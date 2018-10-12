@@ -7,8 +7,9 @@ library()
 #Total Avl Packages
 nrow(available.packages())
 
-#Install Package amap
+#Install Package - single
 install.packages('amap')
+install.packages(c('foreign', 'haven'))
 
 #Load package
 library(amap)
@@ -38,6 +39,7 @@ library('plyr') #load lib
 library('tm')  #load lib
 search()  #check if loaded
 Vectorize(detach)(name=paste0("package:", detpkg), unload=TRUE, character.only=TRUE)  #code to detach
+
 search()  # confirm if removed
 #specify the argument unload=TRUE; otherwise, R removes the package from the search path but doesn’t unload it.
 
