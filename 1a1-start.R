@@ -1,12 +1,14 @@
 #initial commands
 
-# assign
+# assign----
 x1 = 3 #press control + enter to run the line
 x2 <- 3 # same 
 #which is better
 x1
 x2
+(x3=3)  #assign and print
 
+#environment----
 ls() #variables in env
 
 data() # datasets available for use
