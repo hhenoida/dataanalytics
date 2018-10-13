@@ -1,41 +1,49 @@
-#initial commands
+#Starting to work in R
 
 # assign----
-x1 = 3 #press control + enter to run the line
-x2 <- 3 # same 
-#which is better
+x1 = 3
+x2 <- 3
+#Print Values
 x1
 x2
-(x3=3)  #assign and print
-
+#Assign and Print
+(x3=3)
 #environment----
-ls() #variables in env
-
-data() # datasets available for use
-
-library()  # libraries currently loaded
-
-?mean  #help
+#variables in env
+ls()
+# datasets available for use
+data()
+data(women)
+attach(mtcars)
+mgp
+# libraries currently loaded
+library()
+Elements
+ls()
+rm(list=ls())
+rm(list = ls(all = TRUE))
+#help
+?mean
 help(mean)
-??mean  #search through other sources 
+#Create Values
 1:10000000
-x <- c(0:10, 50)
+x = c(0:10, 50)
 x
-xm <- mean(x)
+#Function on data
+xm = mean(x)
 xm
-mean(x, trim=.10)
-(x=1:10)
-
-
-version() #version of R
-
-Sys.Date() # todays date
-
-getwd()  # working directory
-
-methods(class='matrix')  #methods available for a class of object
-
-plot(1:10) #basic command to plot
-
-#Clean Console by 
+#version of R
+version()
+# todays date
+Sys.Date()
+# working directory
+getwd()
+#methods available for a class of object
+methods(class='matrix')
+#basic command to plot
+plot(1:10)
+#Clean Console by
 #Take cursor to Console pane & press Control + L
+
+#run all commands in the Source File test1.R
+source('test1.R')
