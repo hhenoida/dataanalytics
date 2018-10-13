@@ -37,3 +37,5 @@ methods(class='matrix')  #methods available for a class of object
 
 plot(1:10) #basic command to plot
 
+#Clean Console by 
+#Take cursor to Console pane & press Control + L
