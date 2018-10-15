@@ -1,19 +1,34 @@
-#Outliers
+#Outliers - extreme/ anomalies
 #libaries - outliers,car
-easypackages::libraries('outliers','car')
+#install multiple packages using easypackages
+#first install easypackages manually
 
+easypackages::packages('outliers','car','DDoutlier')
+#load multiple packages
+easypackages::libraries('outliers','car','DDoutlier')
+help(DDoutlier)
 #Outlier
-x = c(50:70,99, 150,150)
+x = c(50:70,99,150,150)
 mean(x)
 mean(x[x < 90])
 mean(50:70)
+#removing extreme values changes statistics
 
 #Box Plot
 set.seed(482)
-y = rnorm(100)
+(y = rnorm(100))
 boxplot(y)
+fivenum(y)
+summary(y)
+abline(h=summary(y), col=1:6)
+(outrange = 1.5 * IQR(y))
+(lowerW = quantile(y,.25) - outrange)
+(upperW = quantile(y,.75) + outrange)
+
+y[y < lowerW | y > upperW ]
+
 stripchart(y, vertical = TRUE,  method = "jitter", add = TRUE, pch = 20, col = 'blue', jitter=.05)
-?stripchart
+
 (pts = identify(rep(1, length(y)), y, labels = seq_along(y)))
 #Click on outlier value and press FINISH button on Plot tab
 #click on line along dashed lines
@@ -23,10 +38,13 @@ y[pts]
 #Case
 # Inject outliers into data.
 head(cars)
+dim(cars)
+summary(cars)
 cars1 <- cars[1:30, ]
-cars_outliers <- data.frame(speed=c(19,19,20,20,20), dist=c(190, 186, 210, 220, 218))
+(cars_outliers <- data.frame(speed=c(19,19,20,20,20), dist=c(190, 186, 210, 220, 218)))
 cars2 <- rbind(cars1, cars_outliers)
 tail(cars2)
+summary(cars2)
 
 # Plot of data with outliers.
 par(mfrow=c(1, 2))
@@ -43,20 +61,23 @@ abline(lm(dist ~ speed, data=cars1), col="blue", lwd=3, lty=2)
 
 
 #Univariate Analysis
-
+head(mtcars)
+mtcars$mpg
 #add some extreme values to MPG variable
-x = c(mtcars$mpg, c(50,55,90))
+(x = c(mtcars$mpg, c(50,55,90)))
 (outlier_values = boxplot.stats(x)$out)  # outlier values.
 boxplot(x, main="MPG", boxwex=0.1)
 mtext(paste("Outliers: ", paste(outlier_values, collapse=", ")), cex=0.6)
 
-#outlier package
+#outlier package : 1 best outlier
 outliers::outlier(x)
 outliers::scores(x,type="z", prob=0.95)
 
 #Bivariate Analysis
 #Visualize in box-plot of the X and Y, for categorical X’s
 #What is the inference? The change in the level of boxes suggests that GEAR seem to have an less impact in MPG than CYL. Any outliers in respective categorical level show up as dots outside the whiskers of the boxplot.
+head(mtcars[,c('mpg','cyl','gear')])
+summary(mtcars[,c('mpg','cyl','gear')])
 
 #For continuous variable (convert to categorical if needed.)
 par(mfrow=c(1,2))
@@ -67,11 +88,16 @@ boxplot(mpg ~ factor(cyl), data=mtcars, main="Boxplot for MPG vs CYL")
 par(mfrow=c(1,1))
 boxplot(mpg ~ factor(cyl), data=mtcars, main="Boxplot for MPG vs CYL")
 #merge strip chart by add=T
-stripchart(mpg ~ factor(cyl), vertical = TRUE, data = mtcars, method = "jitter", add = TRUE, pch = 20, col = 'blue')
+stripchart(mpg ~ factor(cyl), vertical = TRUE, data = mtcars, method = "jitter", jitter=.2, add = TRUE, pch = 20, col = 'blue')
+
+#use car package boxplot to highlight outliers
+outlier1=car::Boxplot(mpg ~ cyl, data=mtcars, id=list(labels=rownames(mtcars))) # identify all outliers
+mtcars[outlier1,]
 
 
 #Multivariate Analysis (LM)
 mod = lm(mpg ~ ., data=mtcars)
+summary(mod)
 (cooksd = cooks.distance(mod))
 cooksd[cooksd > 4 * mean(cooksd)]
 
@@ -109,6 +135,7 @@ outliers::scores(mtcars,type="z", prob=0.95)
 #Capping
 x = mtcars$mpg
 outliers::outlier(x)
+x; max(x)
 (qnt = quantile(x, probs=c(.25, .75), na.rm = T))
 (caps = quantile(x, probs=c(.05, .95), na.rm = T))
 (H = 1.5 * IQR(x, na.rm = T))
@@ -116,11 +143,12 @@ boxplot(x,ylim=c(0,45))
 text(1, 39,"Outlier")
 #which values is more than 1.5 IQR
 x[x > (qnt[2] + H)] #replace with 95% value
+caps[1]; caps[2]
 x[x < (qnt[1] - H)] <- caps[1]
 x[x > (qnt[2] + H)] <- caps[2]
 outliers::outlier(x) #next may come up
 x[x > (qnt[2] + H)] # but here not it is < 1.5 IQR
-
+range(x)
 #Prediction
 
 
