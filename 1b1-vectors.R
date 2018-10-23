@@ -1,50 +1,71 @@
 # Vectors and Basic Statistics - Univariate Analysis
 #packages required - e1071, modeest
 #single dimension of same data type
-#x = c(3, 'Data', TRUE) # cannotr
+#x = c(3, 'Data', TRUE) # incorrect
 
 #create numbers in sequence----
-(x1 <- 10:19)
+x1 <- 10:19
 x1
 (x1 = 10:19)
-(x1 = sample(x=10:19))#pick in random order
 x1
+(x1a = sample(x=10:19)) #pick in random order
+
 print(x1) #see the position numbers start from 1
+(y = 10:100)
+y[1:10]
+
 
 #subset/ filter values on condition, position----
+x1
 x1[x1 > 15]
+print(x1[x1 > 15])
 x1[x1 < 13]
-x1[(x1 < 14) | (x1 > 17)]
+x1[(x1 <= 14) | (x1 > 17)]
 x1[(x1 > 14) & (x1 < 17)]
 
 #Subset values on position
 x1
 length(x1)
-x1[1]
+x1[1]; x1[10];x1[length(x1)-1]
 x1[3:6]
 x1[c(3,6,7)]
+seq(1,100,3)
+x1[seq(2,10,2)]
 x1
 x1[-5]
 x1[-c(1,3,7)]
+x1[-c(1,length(x1))]
 
 #sort
+(x1=sample(x=10:200))
+length(x1)
 sort(x1)
+sort(x1, decreasing=TRUE)
 sort(x1, decreasing=T)
 x1
 rev(x1)  #rev is different from decreasing order
 
-
+ls(); x2
 #generate numbers different way----
 (x2 = c(4,7,3,9,11))
 #c - combine values in a vector variable
 (x3 = seq(from=0, to=100, by=5))
+rep(1,times=5); rep(times=5,x=1); rep(1,5)
+rep(c(1,3),times=5)
+rep(c(1,3),each=5)
+
 (x4 = c(rep(4,times=3), rep(7, times=4)))
-(x5 = c(rep(c(1,2,3), times=c(5,4,3))))
+(x5 = c(rep(c(1,2,3,4), times=c(5,4,3,10))))
 
 #Using probability Distributions
-(x6 = rnorm(n=10, mean=5, sd=1))
+set.seed(1234)
+(x6 = rnorm(n=1000000, mean=5, sd=1))
+plot(density(x6))
+abline(v=5, h=0.3, col=1:2)
+
 mean(x6)
 sd(x6)
+
 (x7 = runif(n=10, min=2, max=10))
 
 #removing decimal places/ round----
@@ -219,7 +240,7 @@ barplot(table(x32), horiz=F, col=1:4)
 pie(table(x32))
 
 #Statistics----
-mean(x30)
+mean(x30)   #Question  ?
 var(x30)
 sd(x30)
 sqrt(var(x30))

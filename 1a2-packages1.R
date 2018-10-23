@@ -36,17 +36,18 @@ remove.packages("amap")
 require('amap')# check if unistalled
 find.package("amap")
 
-
+#install easypackages
 #Install Multiple Packages----
+install.packages('easypackages')
 easypackages::packages("plyr", "psych", "abc")
-easypackages::libraries("plyr", "psych", "tm")
+easypackages::libraries("plyr", "psych", "abc")
 
 
 #Installing from other repositories
 install.packages("CHAID", repos="http://R-Forge.R-project.org")
 #github
 require(devtools)
-install_github("Espanta/lubripack")
+devtools::install_github("Espanta/lubripack")
 
 #use lubripack package to install multiple package
 library(lubripack)
