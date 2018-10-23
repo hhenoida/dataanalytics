@@ -55,9 +55,9 @@ lubripack("plyr", "psych", "tm", "quantmod")
 #Check if package is avl for download from repository
 pack = available.packages()
 pack["ggplot2","Depends"]
+#version which this ggplot2 requires
 pack["amap","Depends"]
 
-#version which this ggplot2 requires
 
 
 

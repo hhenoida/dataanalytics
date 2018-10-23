@@ -46,4 +46,5 @@ plot(1:10)
 #Take cursor to Console pane & press Control + L
 
 #run all commands in the Source File test1.R
+#first create a R file with some content in current dir
 source('test1.R')
