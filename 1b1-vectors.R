@@ -67,18 +67,26 @@ mean(x6)
 sd(x6)
 
 (x7 = runif(n=10, min=2, max=10))
+plot(density(x7))
+?distributions
 
 #removing decimal places/ round----
 floor(10.35)
-x6
+(x6 = rnorm(n=10, mean=5, sd=1))
 floor(x6)
 ceiling(x6)
 trunc(x6)
-round(x6,digits=2)  #round to decimal places
-signif(x6,digits=3)  #round to specified no of digits
+round(x6,digits=1)  #round to decimal places
+signif(x6,digits=5)  #round to specified no of digits
+x6b =c(-10.5, 4.56, 5.3)
+trunc(x6b); floor(x6b)
+x6c =c(10.5, 4.56, 5.3)
+trunc(x6c); floor(x6c)
+(x6d= c(05.24, 00005.24, 5.2453))
+signif(x6d, 3)
 
 # Basic operations on vector----
-x1
+x1=1:10
 sum(x1)
 cumsum(x1) # cumulative sum
 cumprod(x1)
@@ -89,16 +97,21 @@ x1
 x1/2
 x1 ^ 2
 x1 ** 2
-x1 %% 2
+x1 %% 2  #modulo/ remainder
+x1 %% 3
 sqrt(x1)
+x1 ^ (1/2)
 sin(x1)
 
 #concatenate vectors
 x1; x2
+x1
+x2
 (x8 = c(x1, x2))
 x8
 
 #min, max, compare ----
+x1
 min(x1)
 max(x1)
 mean(x1)
@@ -106,31 +119,64 @@ median(x1)
 mode(x1) #this mode is not stats mode
 length(x1)  #no of values
 x1==x2
+x1; x2
+x1 ; c(x2,x2)
 5 < 6
 5 > 6
 5 == 6
 5 <= 6
 
 #attributes----
-str(x1)
-class(x1)
-typeof(x1)
+str(x1)   # structure of vector
+?class(x1)
+?typeof(x1)
 summary(x1)
+#what is quantile values
+quantile(x1)
+quantile(x1, c(.1, .3,.6, .7))
+#decile 10%,  percentile 1%
+quantile(x1, seq(from=0, to=1, by=.1))
+quantile(x1, seq(from=0,to=1, by=.01))
+(x1=sample(1:100))
 head(x1)
 head(x1,n=3)
-tail(x1)
+tail(x1,n=2)
 
 
 #missing values in vector (NA)----
 (x9 = c(1,5,14,NA,20,17, NA,9))
+(x9b = c(1,5,14,20,17,9))
+length(x9)
+
 sum(x9) #error
+sum(x9, na.rm=T)
+x9
 is.na(x9) #T & F 
+sum(c(TRUE,FALSE, TRUE,T, F))
+#equates: TRUE with 1, False with 0
+
 #how many missing values
 sum(is.na(x9))
+(y1 = sample(1:100))
+y1[c(30,50,70,81)] = NA
+y1
+anyNA(y1)
+sum(is.na(y1))
+sum(y1, na.rm=T)
+
 sum(x9, na.rm=T)
-na.omit(x9)
+
+
+x9; length(x9)
+x9b = na.omit(x9)
+x9b ; length(x9b)
+?NA
 na.exclude(x9)
+
 #impute
+mean(x9, na.rm=T)
+x9[is.na(x9)]
+x9
 x9[is.na(x9)] = mean(x9, na.rm=T)
 x9
 
@@ -138,6 +184,10 @@ x9
 class(x1)
 (x11 = c(10.4, 12.4, 15, 20)) #numeric
 class(x11)
+(x11b = c(10, 12, 15, 20)) #
+class(x11b)
+x11c = as.integer(x11b)
+class(x11c)
 (x12 = c(3L,6L,9L, 15L)) #integer
 class(x12)
 
@@ -150,9 +200,10 @@ casefold(x13,upper=T)
 (x14 = c("BUSINESS", "MARKETING", 'FINANCIAL'))
 tolower(x14)
 casefold(x14,upper=F)
+#library(stringr)
 
 chartr("BMF","bmF",x14) #replace BMF with bmF
-strsplit(x14, "E") #split at point E is found
+?strsplit(x14, "E") #split at point E is found
 
 
 #Logical Vectors----
