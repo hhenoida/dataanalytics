@@ -41,7 +41,7 @@ range(women$height)
 range(women$height)
 women
 
-
+summary(fit1)
 #R^2
 (summary(fit1))$r.squared  #0.991
 (summary(fit1))$adj.r.squared  #0.9903
@@ -56,7 +56,7 @@ women
 
 
 #Prediction : for height = 65, 66
-
+range(women$height)
 (new1 = data.frame(height=c(65,66,66.5)))
 new1
 (p1=predict(fit1, newdata = new1))

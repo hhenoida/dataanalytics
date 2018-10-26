@@ -13,7 +13,12 @@ omni1 = data.frame(sales,price,promotion)
 head(omni1)
 
 #2nd Method : from CSV file
+
 #omni2 = read.csv(file.choose())
+omni2a = read.csv('./data/salesqty.csv')
+head(omni2a)
+omni2b = read.csv(file.choose())
+head(omni2b)
 
 #3rd Method : from gsheet 
 library(gsheet)
@@ -25,6 +30,7 @@ omni = omni1
 head(omni)
 str(omni)
 nrow(omni)
+summary(omni)
 #MLR  Create Multiple Linear Regression
 # we want to see how Sales Qty depend on Price and Promotion Values
 fit2 = lm(sales ~ price + promotion, data=omni)
@@ -72,7 +78,7 @@ omni[-c(11,14,15),]
 fit3 = lm(sales ~ price + promotion, data=omni[-c(11,14,15),])
 plot(fit3,4)
 summary(fit3)
-
+summary(fit2)
 #End of Multiple Linear Regression
 
 #when variables are large, select only significant variables

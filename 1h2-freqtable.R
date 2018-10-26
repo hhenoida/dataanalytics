@@ -5,9 +5,9 @@
 table(attend)
 cbind(table(attend))  # A & P on left side
 
-#Discrete Numeric Data
+#Discrete Category Data
 
-color=c('Blue','Green','Magenta','Green','Black','Blue','Black')
+color=c('blue','green','blue','magenta','blue','green', 'magenta','black','blue','black')
 (x2 = table(color))
 (x2a = cbind(x2))
 hist(x2a)  # not relevant 
@@ -15,6 +15,8 @@ barplot(x2a)  # not good
 barplot(x2a, beside=T)  # Better
 unique(color) ; length(unique(color))
 barplot(x2a, beside=T, col=rainbow(length(unique(color))))
+barplot(x2a, beside=T, col=sort(unique(color)), names.arg=names(x2))
+
 pie(x2a)
 
 #Continuous Data 

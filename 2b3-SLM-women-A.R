@@ -9,8 +9,13 @@ fit = lm(weight ~ height, data=women)
 cor(women$height, women$weight)
 #there is Strong and Positive Relationship between height and weight
 plot(women$height, women$weight)
+par(mfrow=c(2,2))
+plot(fit)
+
+#one by one
 par(mfrow=c(1,1))
 plot(fit, which=2)
+residuals(fit)
 plot(women)
 
 str(women)
@@ -55,14 +60,14 @@ plot(fit, which=4)
 
 #Auto-Correlation----
 #Independence of residuals error terms. (Not dependent on previous values)
-durbinWatsonTest(fit)
+car::durbinWatsonTest(fit)
 #pvalue < 0; Ho that there is no correlation (r2=0) is accepted
 
 #Outliers
 plot(fit, which=4)
 #potential outliers are highlighted 1, 14, 15 row
 women[c(1,14,15),]
-
+summary(fit)
 #Lets remove these values and then find R2
 fit2 = lm(weight ~ height, data=women[-c(1,14,15),])
 summary(fit2)
@@ -80,5 +85,5 @@ AIC(fit, fit2) #lower value of AIC is better
 #High-leverage points: extreme values in the predictors (x) variable
 
 #All these assumptions and potential problems can be checked by producing some diagnostic plots visualizing the residual errors.
-
-plot(fit1)
+par(mfrow=c(2,2))
+plot(fit)
