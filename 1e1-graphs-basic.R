@@ -68,7 +68,6 @@ pairs(women)
 cor(women$height,women$weight)
 cov(women$height, women$weight)
 head(mtcars)
-?mtcars
 
 cor(mtcars)
 names(mtcars)

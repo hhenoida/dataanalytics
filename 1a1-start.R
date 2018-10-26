@@ -13,27 +13,51 @@ x2
 ls()
 # datasets available for use
 data()
-data(women)
+women
+?women
+?mtcars
+mtcars
+mtcars$mpg
 attach(mtcars)
-mgp
+mpg
 # libraries currently loaded
 library()
-Elements
+#Elements
 ls()
 rm(list=ls())
 rm(list = ls(all = TRUE))
+x1
+women
+mtcars
+data(mtcars)
+
 #help
 ?mean
+x <- c(0:10, 50)
+x
+print(x)
+xm <- mean(x)
+xm
+c(xm, mean(x, trim = 0.10))
 help(mean)
+
 #Create Values
-1:10000000
-x = c(0:10, 50)
+1:100
+seq(0,100, by=2)
+seq(1,100, by=2)
+seq(1,10, length.out=5)
+rep(1,5)
+rep(c(1,4), times=4)
+rep(c(1,4), each=4)
+rep(c(1,4), times = c(2,6))
+
+(x = c(0:10, 50:100))
 x
 #Function on data
 xm = mean(x)
 xm
 #version of R
-version()
+version
 # todays date
 Sys.Date()
 # working directory
