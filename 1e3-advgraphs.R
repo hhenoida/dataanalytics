@@ -3,9 +3,8 @@
 
 library(corrgram)
 cor(mtcars[1:4])
-corrgram(mtcars[1:4], order=TRUE, lower.panel=panel.shade,
-         upper.panel=panel.pie, text.panel=panel.txt,
-         main="Car Milage Data in PC2/PC1 Order")
+corrgram(mtcars[1:4], order=TRUE, lower.panel=panel.shade, upper.panel=panel.pie, text.panel=panel.txt,
+  main="Car Milage Data in PC2/PC1 Order")
 
 
 #alternative of box plot

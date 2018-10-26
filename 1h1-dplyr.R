@@ -98,8 +98,7 @@ names(mtcars)
 filter(mtcars, mpg > 23 | wt < 2)
 mtcars %>% filter(mpg > 23 & wt > 2)
 mtcars %>% select(mpg, wt) %>% filter(mpg > 23) 
-mtcars %>% 
-  
+
 filter(iris, Sepal.Length > 7)
 filter(mtcars, cyl == 4)
 
@@ -187,6 +186,8 @@ df <- tibble(
 df
 df %>%  slice(n()-2:n())
 
+#create a expression
+?quo
 var1 <- quo(letters[1:5])
 var1
 quo(toupper(!!var1))
@@ -229,7 +230,9 @@ f2 <- factor("b")
 c(f1, f2)
 unlist(list(f1, f2))
 
-gtable_combine(f1, f2)
+#gtable - library
+library(gridExtra)
+#gtable_combine(f1, f2)
 gtable_combine(list(f1, f2))
 
 slice( mtcars, c(1L,3L,2L,7L)) 

@@ -8,10 +8,8 @@ cbind(table(attend))  # A & P on left side
 #Discrete Numeric Data
 
 color=c('Blue','Green','Magenta','Green','Black','Blue','Black')
-x2 = table(color)
-x2
-x2a = cbind(x2)
-x2a
+(x2 = table(color))
+(x2a = cbind(x2))
 hist(x2a)  # not relevant 
 barplot(x2a)  # not good
 barplot(x2a, beside=T)  # Better
