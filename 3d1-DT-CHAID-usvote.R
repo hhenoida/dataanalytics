@@ -6,7 +6,8 @@ library(CHAID)  #library for performing CHAID decision tree
 #Dataset
 data(USvote)  #from lib CHAID
 ?USvote
-
+head(USvote)
+str(USvote)
 #Quick CHAID analysis
 set.seed(101)
 sample1 = USvote[sample(1:nrow(USvote), 1000),]

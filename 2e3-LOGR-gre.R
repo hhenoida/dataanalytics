@@ -18,7 +18,8 @@ data$admit = factor(data$admit)
 ## 2way contingency table of cat outcome and predictors we want
 ## to make sure there are not 0 cells
 xtabs(~admit + rank, data = data)
-
+table(data$admit, data$rank)
+names(data)
 #create Logistic Model
 mylogit <- glm(admit ~ gre + gpa + rank, data = data, family = "binomial")
 

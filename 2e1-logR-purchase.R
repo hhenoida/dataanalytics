@@ -15,8 +15,10 @@ head(dataset)
 str(dataset)
 summary(dataset)
 dim(dataset)
-View(dataset)
+#View(dataset)
+names(dataset)
 dataset$gender = factor(dataset$gender)
+dataset$purchased = factor(dataset$purchased)
 
 
 # Split the dataset into the Training set and Test set
@@ -44,24 +46,25 @@ head(training_set)
 #predict on sample data
 test_set2 = data.frame(age=c(40,65), gender=c('Male', 'Female'), salary=c(40000, 50000))
 test_set2
-(prob_pred2 = predict(logitmodel1, type = 'response', newdata = test_set2))
+(prob_pred2 = predict(logitmodel2, type = 'response', newdata = test_set2))
 cbind(test_set2, prob_pred2)
 #age=65 person likely to purchase
 
 # Predicting the Test set results from testset
 head(test_set)
-prob_pred = predict(logitmodel1, type = 'response', newdata = test_set)
+(prob_pred = predict(logitmodel2, type = 'response', newdata = test_set))
+length(prob_pred)
 summary(prob_pred)
 head(cbind(test_set,prob_pred ),10)
 
 #if prob > 0.5 make it 1, else 0
-y_pred = ifelse(prob_pred > 0.5, 1, 0)
+(y_pred = ifelse(prob_pred > 0.5, 1, 0))
 head(cbind(test_set$purchased, y_pred),100)
 
 # Making the Confusion Matrix
 cm = table(test_set[,5], y_pred)
 cm
-(accuracy = (59 + 24)/ sum(cm))
+(accuracy = (60 + 24)/ sum(cm))
 
 library(caret)
 caret::confusionMatrix(cm)

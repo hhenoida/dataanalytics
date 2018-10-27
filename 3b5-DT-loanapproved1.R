@@ -17,9 +17,6 @@ ndata
 (p3=predict(ctree, newdata=ndata,type='matrix'))
 cbind(ndata, p1, p2, p3)
 
-
-
-
 loan_tree = rpart(loanapproved ~ ., data=loan, method='class', control=rpart.control(minsplit=5, cp=-1))
 loan_tree
 rpart.plot(loan_tree)
