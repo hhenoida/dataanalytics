@@ -43,25 +43,32 @@ confusionMatrix(data$admit, prob, threshold = optCutOff)
 confusionMatrix(data$admit, prob, threshold = .7)
 (accuracy = (272+2)/ (sum(272+2+125+1))) #.685
 
-confusionMatrix(data$admit, prob, threshold = .2)
-
+(cm2 = confusionMatrix(data$admit, prob, threshold = .2))
+(83+109)/sum(cm2)  #lesser than earlier threshold
 
 ## view data frame
 library(dplyr)
 sample_n(data,size=1)
 (newdata1 = data.frame(gre=450, gpa=3.7, rank=factor(3) ))
-(newdata1$admitPredicted <- predict(mylogit, newdata = newdata1, type = "response"))
+(newdata1$admitPredicted = predict(mylogit, newdata = newdata1, type = "response"))
 (newdata1$admitClass = ifelse(newdata1$admitPredicted > .46,1,0))
 newdata1  #b=not admitted to institute
 
 #End of Logistic Regression
 #also check for assumptions of residues, VIF, Multi-collinearity
+#http://www.statisticssolutions.com/assumptions-of-logistic-regression/
+#http://www.statisticssolutions.com/assumptions-of-logistic-regression/
+#http://www.sthda.com/english/articles/36-classification-methods-essentials/148-logistic-regression-assumptions-and-diagnostics-in-r/
+plot(mylogit, which = 4, id.n = 3) #3 most influential variables
+car::vif(mylogit)  #gvif should < 5 : Multicollinearity
 #Parition the data into train and test
 
 
+#-------------------------------------------
+#Creating and understanding Data Partition
 
 library(caret)
-Index <- createDataPartition(y=data$admit, p=0.70, list=FALSE)
+Index = createDataPartition(y=data$admit, p=0.70, list=FALSE)
 head(Index)
 nrow(data)
 trainData = data[Index ,]

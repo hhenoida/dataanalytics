@@ -61,6 +61,8 @@ head(cbind(test_set$purchased, y_pred),100)
 # Making the Confusion Matrix
 cm = table(test_set[,5], y_pred)
 cm
+(accuracy = (59 + 24)/ sum(cm))
+
 library(caret)
 caret::confusionMatrix(cm)
 
