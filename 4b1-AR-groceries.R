@@ -2,7 +2,7 @@
 
 library(arules)  #install first
 library(arulesViz) #install first
-library(datasets)  # no need to install, just load it reqd for Groceries
+library(datasets)  # no need to install, just load it; reqd for Groceries
 data('Groceries')
 Groceries
 
@@ -11,13 +11,15 @@ str(Groceries)
 Groceries
 arules::LIST(Groceries[1:6])  #another view
 arules::inspect(Groceries[1:5])
+length(Groceries)
+#LIST(Groceries[length(Groceries)-5:length(Groceries)])
 
 #Find Frequent Itemset
+#Find Frequent Itemset
 frequentItems = eclat (Groceries, parameter = list(supp = 0.01, minlen= 2, maxlen = 5)) 
-inspect(frequentItems[1:10])
+arules::inspect(frequentItems)
 frequentItems
-inspect(frequentItems[10:100])
-#inspect(frequentItems[100:122])
+inspect(frequentItems[10:15])
 #Descending Sort frequent items by count : 1 to 25 itemsets
 inspect(sort (frequentItems, by="count", decreasing=TRUE)[1:25])
 inspect(sort (frequentItems, by="count", decreasing=F)[1:25])

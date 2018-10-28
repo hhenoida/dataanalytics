@@ -4,7 +4,7 @@
 #WordCloud From : an R object containing plain text; a txt file containing plain text. It works with local and online hosted txt files; A URL of a web page
 
 #Install Packages
-#install.packages(c("tm", "SnowballC", "wordcloud", "RColorBrewer", "RCurl", "XML")
+#install.packages(c("tm", "SnowballC", "wordcloud", "RColorBrewer", "RCurl", "XML"))
 #Load these libraries
 library(wordcloud)
 library(RColorBrewer)
@@ -51,3 +51,4 @@ rquery.wordcloud(x=url, type="url")
 
 url = "http://www.sthda.com/english/wiki/create-and-format-powerpoint-documents-from-r-software"
 rquery.wordcloud(x=url, type="url")
+

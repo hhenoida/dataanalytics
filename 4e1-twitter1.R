@@ -28,11 +28,9 @@ load("twitter authentication.Rdata")
 setup_twitter_oauth(consumerKey, consumerSecret, AccessToken, AccessTokenSecret)
 
 #type 1 : Yes 
-#search.string <- "#businessanalytics"
-search.string <- "#marketinganalytics"
-
+search.string <- "#businessanalytics"
+#search.string <- "#marketinganalytics"
 no.of.tweets <- 100
-
 tweets <- searchTwitter(search.string, n=no.of.tweets,lang="en")
 tweets
 tweets[1:10]
@@ -44,14 +42,15 @@ no.of.tweets <- 100
 
 tweets <- searchTwitter(search.string, n=no.of.tweets,lang="en")
 tweets[1:5]
-
+?searchTwitter
+?searchTwitteR
 #My Tweets : will change if you use your own account
 homeTimeline(n=15)  #my tweets
 mentions(n=15)   # my tags
 mentions(n=5)
 
 #for user - 
-(tweets = userTimeline("sumanmohanty", n=10))
+(tweets = userTimeline("10rishav", n=10))
 userTimeline("drisha_sinha", n=5)
 
 #------------------------------------
@@ -75,12 +74,16 @@ head(tweets.df2)
 #-----
 library("syuzhet") #library for sentiment analysis - comparison
 word.df <- as.vector(tweets.df2)
+word.df
 emotion.df <- get_nrc_sentiment(word.df)
+emotion.df
+word.df[3]
 emotion.df2 <- cbind(tweets.df2, emotion.df) 
 head(emotion.df2)
 
 #-----
 sent.value <- get_sentiment(word.df)
+?get_sentiment
 most.positive <- word.df[sent.value == max(sent.value)]
 most.positive
 most.negative<- word.df[sent.value <= min(sent.value)] 
