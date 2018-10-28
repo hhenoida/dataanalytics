@@ -42,41 +42,50 @@ inspect (rulesl[1:5])
 
 #How To Control The Number Of Rules in Output ?
 #maxlen, minlen, supp, conf
-rules2 = apriori (Groceries, parameter = list (supp = 0.01, conf = 0.5, minlen=2, maxlen=3)) 
-inspect(rules2[1:15])
-
-#Find what factors influenced an event ‘X’
-rules3 = apriori (data=Groceries, parameter=list (supp=0.002,conf = 0.8), appearance = list (default="lhs",rhs="whole milk"), control = list (verbose=F))
-inspect(rules3[1:5])
-inspect(rules3)
+rules2 = apriori (Groceries, parameter = list (supp = 0.001, conf = 0.5, minlen=2, maxlen=6)) 
+inspect(rules2[1:50])
+#legend to condition commands 
+# lhs - means left hand side, or antecendent
+# rhs - mean right hand side, or consequent
+# items - items, that make up itemsets
+# %in% - matches any
+# %ain% - matches all
+# %pin% - matches partially
+# default - no restrictions applied
+# & - additional restrictions on lift, confidence etc.
 
 #Find out what events were influenced by a given event
-subset1 = subset(rules2, subset=rhs %in% "whole milk")
-inspect(subset1)
-subset1 = subset(rules2, subset=rhs %in% 'bottled beer' )
-inspect(subset1)
-inspect(rules2)
-subset2 = subset(rules2, subset=lhs %ain% c('baking powder','soda') )
-inspect(subset2)
-subset2a = subset(rules2, subset=lhs %in% c('baking powder','soda') )
+subset1 = subset(rules2, subset=rhs %in% "whole milk")  # whole milk in rhs
+inspect(subset1[1:10])  #show only 1st 10 rows ; change it to show more
+#if no such pattern, no output or index out of range will be printed
+subset1 = subset(rules2, subset=rhs %in% 'root vegetables' )   #this item in rhs
+inspect(subset1[1:10])
+subset2a = subset(rules2, subset=lhs %ain% c('baking powder','soda') )  #all items in lhs
 inspect(subset2a)
-
-
-
+subset2b = subset(rules2, subset=lhs %in% c('baking powder','soda') )  #any of these in lhs
+inspect(subset2b[1:5])
 
 subset3 = subset(rules2, subset=rhs %in% 'bottled beer' & confidence > .7, by = 'lift', decreasing = T)
 inspect(subset3)
 subset4 = subset(rules2, subset=lhs %in% 'bottled beer' & rhs %in% 'whole milk' )
-inspect(subset4)
+inspect(subset4[1:5])
 
 #Visualizing The Rules -----
 plot(subset1[1:10]) 
 plot(subset1[1:10], measure=c("support", "lift"), shading="confidence")
 
 #
+#we can create subset conditions at the time of creation of rules
+#Find what factors influenced an event ‘X’
+rules3 = apriori (data=Groceries, parameter=list (supp=0.002,conf = 0.8), appearance = list (default="lhs",rhs="whole milk"), control = list (verbose=F))
+inspect(rules3[1:5])
+inspect(rules3)
 
 
 rules4 = apriori (data=Groceries, parameter=list (supp=0.001,conf = 0.4), appearance = list (default="rhs",lhs=c('tropical fruit','herbs')), control = list (verbose=F))
 inspect(rules4[1:5])
 inspect(rules4)
 
+#end of AR
+#understand the measures of AR - support, confidence, lift
+#apply the rules; find frequent items, sort rules, subset rules on conditions ; plot rule; interpret them; bring changes to your strategy

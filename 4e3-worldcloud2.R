@@ -8,6 +8,8 @@ library(tm)
 
 # Read the text file from file
 #text = readLines(file.choose())
+#save the text file in root folder of the project
+
 text = readLines(con= file("ximb.txt"))
 text
 text[1]

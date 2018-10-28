@@ -8,12 +8,12 @@ library(gsheet)
 data = as.data.frame(gsheet2tbl(url))
 str(data)
 head(data)
-
 names(data)
 summary(data)
 str(data)
 ###Verify the data
 colnames(data)
+sapply(data, class)
 class(data$Age)
 apply(data, 2, FUN= class)  #are all numeric
 dim(data)
@@ -22,10 +22,10 @@ summary(data)
 ###Run the kmeans algorithm to generate the clusters
 #?amap::Kmeans
 names(data)
-
+nrow(data)
 k1 <- amap::Kmeans(data[,-1],centers=3, iter.max = 200)
 
-nc = NbClust(data[-1], distance="euclidean",min.nc=2, max.nc=15, method="average")
+#nc = NbClust(data[-1], distance="euclidean",min.nc=2, max.nc=15, method="average")
 
 str(data)
 
