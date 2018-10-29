@@ -7,16 +7,26 @@ library(wordcloud2)
 
 # have a look to the example dataset
 head(demoFreq)
-
+str(demoFreq)
 #wordcloud
 wordcloud2(demoFreq, size=1.6)
+?wordcloud2
+word = c('marketing','consumer', 'demand','price')
+freq = c(30,20,15,36)
+df1 = data.frame(word, freq)
+rownames(df1)= word
+df1 = edit(df1)
+df1= fix(df1)
+head(df1)
+#df1 = head(demoFreq)
+wordcloud2(df1, size=.4)
 
 # Gives a proposed palette
 wordcloud2(demoFreq, size=1.6, color='random-dark')
 
 # or a vector of colors. vector must be same length than input data
 wordcloud2(demoFreq, size=1.6, color=rep_len( c("green","blue"), nrow(demoFreq) ) )
-
+?wordcloud2
 # Change the background color
 wordcloud2(demoFreq, size=1.6, color='random-light', backgroundColor="black")
 
@@ -36,10 +46,12 @@ ww
 
 #chinese
 demoFreqC
+head(demoFreqC)
 wordcloud2(demoFreqC, size = 2, fontFamily = "微软雅黑", color = "random-light", backgroundColor = "grey")
 
 
 #notworking : clear the plot area
+
 #The lettercloud function allows to use a letter or a word as a shape for the wordcloud.
 letterCloud( demoFreq, word = "R", color='random-light' , backgroundColor="blue")
 letterCloud( demoFreq, word = "PEACE", color="white", backgroundColor="pink")

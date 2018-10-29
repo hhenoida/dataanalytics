@@ -1,6 +1,6 @@
 #https://ntguardian.wordpress.com/2017/03/27/introduction-stock-market-data-r-1/
 #Stock Analysis  
-
+#install package quantmod
 # Get quantmod
 if (!require("quantmod")) {
   install.packages("quantmod")
@@ -8,7 +8,7 @@ if (!require("quantmod")) {
 }
 
 start <- as.Date("2017-01-01")
-end <- as.Date("2018-10-01")
+end <- as.Date("2018-10-28")
 
 # Let's get Apple stock data; Apple's ticker symbol is AAPL. We use the quantmod function getSymbols, and pass a string as a first argument to identify the desired ticker symbol, pass 'yahoo' to src for Yahoo! Finance, and from and to specify date ranges
 # The default behavior for getSymbols is to load data directly into the global environment, with the object being named after the loaded ticker symbol. This feature may become deprecated in the future, but we exploit it now.
@@ -81,3 +81,5 @@ addSMA(n = 20)
 candleChart(AAPL, up.col = "black", dn.col = "red", theme = "white", subset = "2016-01-04/")
 addSMA(n = c(20, 50, 200))
 
+getSymbols("SBIN.NS", src = "yahoo", from = start, to = end)
+tail(SBIN.NS)

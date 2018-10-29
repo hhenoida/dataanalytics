@@ -5,7 +5,7 @@ cdate1='15/August/1947'
 cdate1
 cdate2 = c('15-Aug-1947', "26-Jan-1950", "01-Oct-2018")
 cdate2
-
+cdate1+ 1
 class(cdate1) ; class(cdate2)
 #convert to Dates
 #Default Format of Date in R
@@ -13,6 +13,8 @@ class(cdate1) ; class(cdate2)
 
 #See/ Convert Date format
 as.Date('2018-09-01')
+as.Date('2018-09-01') + 1
+
 #Default Format : Year-Month-Date : %Y-%m-%d
 (date3= as.Date('2018-09-01',format='%Y-%m-%d'))
 class(date3)
@@ -26,16 +28,19 @@ class(date3)
 
 #convert cdate1 cdate2 to date formats
 cdate1 #"15/August/1947
-date1 = as.Date(cdate1, format='%d/%B/%y')
+date1 = as.Date(cdate1, format='%d/%B/%Y')
 date1
+date1 + 1:15
+date1 + seq(0,30,2)
+
 #
 cdate2 #"15-Aug-1947" "26-Jan-1950"
 date2 = as.Date(cdate2, format='%d-%b-%Y')
-date2
+date2 + 2
 #
 
 #one more practise on date format
-date3 =as.Date('30Apr18',format("%d%b%y"))
+date3 =as.Date('30Apr18',format=("%d%b%y"))
 class(date3)
 
 #Date to Characters
@@ -98,7 +103,7 @@ course1
 #1st and 5th dates
 course1[c(1,5)] # 1st & 5th date 
 #1st and 5th dates
-course[1] ; course[5]
+course1[1] ; course1[5]
 
 #duration from 8th date to first date
 (duration1 = course1[8] - course1[1])
@@ -107,8 +112,24 @@ course[1] ; course[5]
 
 #duration since independence
 (independencedays = Sys.Date() - as.Date('15-08-1947', '%d-%m-%Y'))
-independencedays/365  #years
+d1= independencedays/365  #years
+d1
+paste("Days since Indep ", as.numeric(d1))
 
 as.character(Sys.Date(), format="%Y--%m--%d %A")
 course1
 paste(course1 , as.character(course1, format="%A"), sep=":: ")
+
+#find days when you were born
+dob = "28-11-1995"
+date_dob = as.Date(dob, format="%d-%m-%Y")
+date_dob
+format(date_dob, format="%A")
+
+#find days passed since you were born
+Sys.Date() - date_dob
+
+#find days passed from your birth till you joined your institute
+as.Date("27-07-2017", format="%d-%m-%Y") - date_dob
+#find difference between u and ur friends dob in days
+as.Date("27-07-1996", format="%d-%m-%Y") - date_dob

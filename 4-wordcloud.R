@@ -19,6 +19,7 @@ source('http://www.sthda.com/upload/rquery_wordcloud.r')
 filePath <- "http://www.sthda.com/sthda/RDoc/example-files/martin-luther-king-i-have-a-dream-speech.txt"
 res<-rquery.wordcloud(filePath, type ="file", lang = "english")
 #to plot more words
+
 res<-rquery.wordcloud(filePath, type ="file", lang = "english",  min.freq = 1,  max.words = 200)
 #change colors
 # Reds color palette
@@ -51,4 +52,9 @@ rquery.wordcloud(x=url, type="url")
 
 url = "http://www.sthda.com/english/wiki/create-and-format-powerpoint-documents-from-r-software"
 rquery.wordcloud(x=url, type="url")
+
+#loading a text file from local computer
+filePath = "./ximb.txt"
+
+res<-rquery.wordcloud(filePath, type ="file", lang = "english",  min.freq = 1,  max.words = 200)
 
